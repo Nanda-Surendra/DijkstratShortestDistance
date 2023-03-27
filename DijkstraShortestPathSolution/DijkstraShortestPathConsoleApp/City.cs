@@ -16,7 +16,6 @@ namespace DijkstraShortestPathConsoleApp
         public Dictionary<City, int> Destinations { get; set; }
         public int DistanceFromStart { get; set; }
         public bool Visited { get; set; }
-
         public City(string cityName)
         {
             CityName = cityName;
