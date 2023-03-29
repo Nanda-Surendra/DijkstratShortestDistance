@@ -26,13 +26,14 @@ namespace DijkstraShortestPathConsoleApp
 
                 foreach(KeyValuePair<City, int> eachDestination in currentCity.Destinations) 
                 {                        
-                    int newDistanceFromStart = currentCity.DistanceFromStart + eachDestination.Value;
+                    int newDistanceFromStart = 
+                        currentCity.DistanceFromStart + eachDestination.Value;
                     
                     if (!eachDestination.Key.Visited)
                     {
                         eachDestination.Key.Visited = true;
                         eachDestination.Key.DistanceFromStart = newDistanceFromStart;
-
+                        eachDestination.Key.PreviousCity = currentCity;
                         cityQueue.Enqueue(eachDestination.Key, newDistanceFromStart); 
                     }
                     else
@@ -41,13 +42,23 @@ namespace DijkstraShortestPathConsoleApp
                             < eachDestination.Key.DistanceFromStart)
                         {
                             eachDestination.Key.DistanceFromStart = newDistanceFromStart;
-
+                            eachDestination.Key.PreviousCity = currentCity;
                             cityQueue.Enqueue(eachDestination.Key, newDistanceFromStart);                             
                         }
                     }
                 }//for each Destination from Current City
 
+ 
             }//end while - as long as there are cities in the queue
+
+            List<City> shortestTravelPath = new List<City>();
+            City previous = end;
+            while (previous != null)
+            {
+                shortestTravelPath.Add(previous);
+                previous = previous.PreviousCity;
+            }
+            shortestTravelPath.Reverse();
 
             if (end.DistanceFromStart == int.MaxValue)
             {
@@ -57,6 +68,15 @@ namespace DijkstraShortestPathConsoleApp
             {
                 Console.WriteLine("Shortest distance from {0} to {1} is {2}",
                     start.CityName, end.CityName, end.DistanceFromStart);
+                StringBuilder shortestCityPath = new StringBuilder();
+                foreach (City eachCity in shortestTravelPath) 
+                {
+                    shortestCityPath.Append(eachCity.CityName + "( " + eachCity.DistanceFromStart.ToString()  
+                        + ") -> ");
+                }
+                shortestCityPath.Remove(shortestCityPath.Length - 4, 4);
+                Console.WriteLine(shortestCityPath.ToString());
+
             }
         }//end FindShortestPath method
 

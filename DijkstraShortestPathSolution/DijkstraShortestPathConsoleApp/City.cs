@@ -17,12 +17,14 @@ namespace DijkstraShortestPathConsoleApp
         public Dictionary<City, int> Destinations { get; set; }
         public int DistanceFromStart { get; set; }
         public bool Visited { get; set; }
+        public City? PreviousCity { get; set; }
         public City(string cityName)
         {
             CityName = cityName;
             Destinations = new Dictionary<City, int>();
             DistanceFromStart = int.MaxValue;
             Visited = false;
+            PreviousCity = null;
         }
     }
 }
