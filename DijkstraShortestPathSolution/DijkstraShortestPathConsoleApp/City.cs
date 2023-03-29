@@ -13,6 +13,7 @@ namespace DijkstraShortestPathConsoleApp
         
         //Dictionary is a <Key, Value> pair
         //Key = City, Value = Distance of Destination from Current City
+        //Adjacency List (alternate: Adjacency Matrix)
         public Dictionary<City, int> Destinations { get; set; }
         public int DistanceFromStart { get; set; }
         public bool Visited { get; set; }

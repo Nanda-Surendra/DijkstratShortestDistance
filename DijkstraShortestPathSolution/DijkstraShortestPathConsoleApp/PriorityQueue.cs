@@ -16,8 +16,9 @@ namespace DijkstraShortestPathConsoleApp
         */
 
         //Tuple can take upto 8 items
-        //In this case, we will have two:
+        //In this case, we will have two items:
         //The T class object and an int for the priority
+        
         public List<Tuple<T, int>> elements = new List<Tuple<T, int>>();
 
         public int Count
@@ -41,9 +42,9 @@ namespace DijkstraShortestPathConsoleApp
                     priorityItemIndex = i;
                 }
             }
-            T bestItem = elements[priorityItemIndex].Item1;
+            T priorityItem = elements[priorityItemIndex].Item1;
             elements.RemoveAt(priorityItemIndex);
-            return bestItem;
+            return priorityItem;
         }
     }
 }

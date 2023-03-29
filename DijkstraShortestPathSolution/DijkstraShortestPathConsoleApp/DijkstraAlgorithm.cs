@@ -13,6 +13,7 @@ namespace DijkstraShortestPathConsoleApp
             start.DistanceFromStart = 0;
             PriorityQueue<City> cityQueue = new PriorityQueue<City>();
             cityQueue.Enqueue(start, 0);
+            
             while (cityQueue.Count > 0) 
             {
                 City currentCity = cityQueue.Dequeue();
